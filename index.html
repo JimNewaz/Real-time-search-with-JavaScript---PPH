@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- stylings -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 24px 0;
+        font-size: 16px;
+      }
+
+      /* common classes */
+      .max-w-xl {
+        max-width: 1294px;
+      }
+      .flex {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .justify-center {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+      .mx-auto {
+        margin: 0 auto;
+      }
+      .px-10 {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+      .space-y-8 > * + * {
+        margin-top: 32px;
+      }
+      /* ------- */
+
+      header div {
+        padding: 0.8rem 0.7rem;
+        border: 1px solid rgb(150, 187, 228);
+        background: rgb(150, 187, 228);
+        background: -webkit-gradient(
+          linear,
+          left top,
+          right top,
+          color-stop(46%, rgba(150, 187, 228, 1)),
+          color-stop(98%, rgba(175, 201, 232, 1))
+        );
+        background: -o-linear-gradient(
+          left,
+          rgba(150, 187, 228, 1) 46%,
+          rgba(175, 201, 232, 1) 98%
+        );
+        background: linear-gradient(
+          90deg,
+          rgba(150, 187, 228, 1) 46%,
+          rgba(175, 201, 232, 1) 98%
+        );
+        border-radius: 0.5rem;
+      }
+
+      .page_title {
+        font-size: 1rem;
+        color: #000000;
+        font-weight: 800;
+        text-transform: capitalize;
+      }
+
+      main {
+        margin-top: 2.2rem;
+      }
+
+      .filter_container-left {
+        max-width: 440px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .field_container label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .field_container input {
+        max-width: 480px;
+        width: 100%;
+        margin-top: 4px;
+        padding: 0.7rem 0.8rem;
+        font-size: 0.85rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-transition: border-color 0.25s ease-in-out;
+        -o-transition: border-color 0.25s ease-in-out;
+        transition: border-color 0.25s ease-in-out;
+        outline: none;
+      }
+
+      .field_container input:hover,
+      .field_container input:focus-visible {
+        border-color: #828181;
+      }
+
+      .price_range-title {
+        padding: 0.55rem 4rem;
+        color: #ffffff;
+        font-size: 0.87rem;
+        font-weight: 400;
+        background: rgb(236, 114, 30);
+        background: -o-linear-gradient(
+          117deg,
+          rgba(236, 114, 30, 1) 42%,
+          rgba(242, 136, 75, 0.9697128851540616) 77%
+        );
+        background: linear-gradient(
+          333deg,
+          rgba(236, 114, 30, 1) 42%,
+          rgba(242, 136, 75, 0.9697128851540616) 77%
+        );
+      }
+
+      .filter_container-right {
+        max-width: 480px;
+        width: 100%;
+        margin: 2.4rem auto 0;
+      }
+
+      .filter-range_value {
+        margin-top: 1.6rem;
+        font-size: 1.12rem;
+      }
+
+      /* slider */
+      .multi-range-slider {
+        margin-top: 2rem;
+        position: relative;
+      }
+
+      .slider {
+        position: relative;
+        z-index: 1;
+        height: 8px;
+        margin: 0 15px;
+      }
+      .slider > .track {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 4px;
+        background-color: #ccc;
+      }
+      .slider > .range {
+        position: absolute;
+        z-index: 2;
+        left: 25%;
+        right: 25%;
+        top: 0;
+        bottom: 0;
+        border-radius: 4px;
+        background-color: rgb(0, 108, 227);
+      }
+      .slider > .thumb {
+        position: absolute;
+        z-index: 3;
+        width: 24px;
+        height: 24px;
+        background-color: rgb(0, 108, 227);
+        border-radius: 50%;
+        -webkit-box-shadow: 0 0 0 0 rgba(0, 108, 227, 0.1);
+        box-shadow: 0 0 0 0 rgba(0, 108, 227, 0.1);
+        -webkit-transition: -webkit-box-shadow 0.3s ease-in-out;
+        transition: -webkit-box-shadow 0.3s ease-in-out;
+        -o-transition: box-shadow 0.3s ease-in-out;
+        transition: box-shadow 0.3s ease-in-out;
+        transition: box-shadow 0.3s ease-in-out,
+          -webkit-box-shadow 0.3s ease-in-out;
+      }
+      .slider > .thumb.left {
+        left: 25%;
+        -webkit-transform: translate(-15px, -8px);
+        -ms-transform: translate(-15px, -8px);
+        transform: translate(-15px, -8px);
+      }
+      .slider > .thumb.right {
+        right: 25%;
+        -webkit-transform: translate(15px, -8px);
+        -ms-transform: translate(15px, -8px);
+        transform: translate(15px, -8px);
+      }
+      .slider > .thumb.hover {
+        -webkit-box-shadow: 0 0 0 20px rgba(0, 108, 227, 0.1);
+        box-shadow: 0 0 0 20px rgba(0, 108, 227, 0.1);
+      }
+      .slider > .thumb.active {
+        -webkit-box-shadow: 0 0 0 32px rgba(0, 108, 227, 0.2);
+        box-shadow: 0 0 0 32px rgba(0, 108, 227, 0.2);
+      }
+
+      input[type="range"] {
+        position: absolute;
+        pointer-events: none;
+        -webkit-appearance: none;
+        z-index: 2;
+        height: 8px;
+        width: 100%;
+        opacity: 0;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        pointer-events: all;
+        width: 24px;
+        height: 24px;
+        border-radius: 0;
+        border: 0 none;
+        background-color: transparent;
+        -webkit-appearance: none;
+      }
+
+      .table_container {
+        position: relative;
+        margin: 2.2rem auto 0;
+        max-height: 992px;
+        max-width: 1440px;
+        width: 100%;
+        overflow: auto;
+      }
+      .table_container table {
+        margin: 0 auto;
+        min-width: 440px;
+        max-width: 1440px;
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .table_container thead th {
+        position: sticky; /* make the table heads sticky */
+        top: 0px; /* table head will be placed from the top of the table and sticks to it */
+        padding: 16px 16px 8px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .table_container tbody td {
+        padding: 8px 16px;
+        text-align: center;
+      }
+
+      .table_container table tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      /* responsiveness */
+      @media screen and (min-width: 720px) {
+        header div {
+          padding: 1.1rem 0.7rem;
+          border-radius: 0.6rem;
+        }
+
+        .page_title {
+          font-size: 1.25rem;
+        }
+      }
+
+      @media screen and (min-width: 992px) {
+        .filter_container {
+          display: -ms-grid;
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .filter_container-left {
+          max-width: 100%;
+          -ms-grid-column-span: 3;
+          grid-column: span 3 / span 3;
+          padding-top: 2rem;
+          margin-left: 2.4rem;
+        }
+
+        .filter_container-right {
+          max-width: 100%;
+          margin-top: 0;
+          -ms-grid-column-span: 2;
+          grid-column: span 2 / span 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="flex justify-center">
+      <div>
+        <h1 class="page_title">Availability Consolidation</h1>
+      </div>
+    </header>
+    <main>
+      <section class="max-w-xl mx-auto px-10 filter_container">
+        <div class="space-y-8 filter_container-left">
+          <div class="field_container">
+            <label for="location-search"> WHERE ARE YOU LOOKING? </label>
+            <input
+              id="location-search"
+              type="text"
+              placeholder="Start typing a location"
+              value=""
+            />
+          </div>
+          <div class="field_container">
+            <label for="workspaces-search">
+              FOR ROUGHLY HOW MANY PEOPLE?
+            </label>
+            <input id="workspaces-search" type="number" min="0" value="0" />
+          </div>
+        </div>
+        <div class="filter_container-right">
+          <div class="flex justify-center">
+            <h4 class="price_range-title">Price Range</h4>
+          </div>
+          <div class="filter-range_value">
+            <span id="price_range_val-min"> £175 </span>
+            <span> - </span>
+            <span id="price_range_val-max"> £300,000 </span>
+          </div>
+
+          <div class="multi-range-slider">
+            <input type="range" id="input-left" min="0" max="300000" value="0" />
+            <input
+              type="range"
+              id="input-right"
+              min="0"
+              max="300000"
+              value="300000"
+            />
+
+            <div class="slider">
+              <div class="track"></div>
+              <div class="range"></div>
+              <div class="thumb left"></div>
+              <div class="thumb right"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="table_container">
+        <table>
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Location</th>
+              <th>Address</th>
+              <th>WorkSpaces</th>
+              <th>List Price</th>
+              <th>Avilable From</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr>
+              <td colspan="8">Refreshing with latest data, please wait...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      // update this URL with yours (note: onedrive or google drive won't work as they required specific SDK to install)
+      const CSV_URL = "latest.csv";
+      let data = [],
+        isLoading = true;
+
+      // elements
+      const inputLocation = document.getElementById("location-search");
+      const inputWorkspaces = document.getElementById("workspaces-search");
+
+      const inputLeft = document.getElementById("input-left");
+      const inputRight = document.getElementById("input-right");
+      const thumbLeft = document.querySelector(".slider > .thumb.left");
+      const thumbRight = document.querySelector(".slider > .thumb.right");
+      const range = document.querySelector(".slider > .range");
+
+      const priceRangeValMin = document.getElementById("price_range_val-min");
+      const priceRangeValMax = document.getElementById("price_range_val-max");
+
+      // for slider functionality
+      function setLeftValue() {
+        var _this = inputLeft,
+          min = parseInt(_this.min),
+          max = parseInt(_this.max);
+
+        _this.value = Math.min(
+          parseInt(_this.value),
+          parseInt(inputRight.value) - 5
+        );
+
+        var percent = ((_this.value - min) / (max - min)) * 100;
+
+        thumbLeft.style.left = percent + "%";
+        range.style.left = percent + "%";
+
+        priceRangeValMin.innerHTML = "£" + _this.value;
+        doSearch();
+      }
+
+      function setRightValue() {
+        var _this = inputRight,
+          min = parseInt(_this.min),
+          max = parseInt(_this.max);
+
+        _this.value = Math.max(
+          parseInt(_this.value),
+          parseInt(inputLeft.value) + 5
+        );
+
+        var percent = ((_this.value - min) / (max - min)) * 100;
+
+        thumbRight.style.right = 100 - percent + "%";
+        range.style.right = 100 - percent + "%";
+
+        priceRangeValMax.innerHTML = "£" + _this.value;
+        doSearch();
+      }
+
+      // helper functions for the search
+      function searchByLocation(dt, query) {
+        let regx = new RegExp(`^.*?\\b(${query}).*?`, "gi");
+        if (!query) return true;
+        else if (
+          regx.test(dt["City"]) ||
+          regx.test(dt["Location"]) ||
+          regx.test(dt["Address"])
+        ) {
+          return true;
+        }
+        return false;
+      }
+
+      function searchByWorkspaces(dt, query) {
+        if (query <= 0) return true;
+        else if (+dt.WorkSpaces === +query) {
+          return true;
+        }
+        return false;
+      }
+
+      function searchByPriceRange(dt, priceRangeMin, priceRangeMax) {
+        try {
+          if (
+            dt["List Price"] &&
+            Number(dt["List Price"].replace(/,/g, "")) >= priceRangeMin &&
+            Number(dt["List Price"].replace(/,/g, "")) <= priceRangeMax
+          ) {
+            return true;
+          }
+          return false;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+
+      // the search function
+      function doSearch() {
+        let location = inputLocation.value;
+        let workSpaces = inputWorkspaces.value;
+        let priceRangeMin = inputLeft.value;
+        let priceRangeMax = inputRight.value;
+
+        let tempt = data.filter((dt) => {
+          if (
+            searchByLocation(dt, location) &&
+            searchByWorkspaces(dt, workSpaces) &&
+            searchByPriceRange(dt, priceRangeMin, priceRangeMax)
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        loadData(tempt);
+      }
+
+      // load the data into the DOM
+      function loadData(filteredData) {
+        if (isLoading) return;
+
+        const tableBody = document.getElementById("tbody");
+        const newTableBody = document.createElement("tbody");
+        newTableBody.setAttribute("id", "tbody");
+
+        if (filteredData.length === 0) {
+          const tableRow = document.createElement("tr");
+          const tableCell = document.createElement("td");
+          tableCell.setAttribute("colspan", 8);
+          tableCell.textContent = "No data found!";
+          tableRow.appendChild(tableCell);
+          newTableBody.appendChild(tableRow);
+        } else {
+          filteredData.forEach((dt) => {
+            const tableRow = document.createElement("tr");
+            const cells = Object.values(dt);
+            cells.forEach((cell) => {
+              const tableCell = document.createElement("td");
+              tableCell.textContent = cell;
+              tableRow.appendChild(tableCell);
+            });
+            newTableBody.appendChild(tableRow);
+          });
+        }
+
+        tableBody.parentNode.replaceChild(newTableBody, tableBody);
+      }
+
+      // CSV parser
+      function parseCsvIntoJson(csv) {
+        const lines = csv.split("\n");
+        const headers = lines[0].split(",").map((header) => header.trim());
+        const result = [];
+
+        function parseCsvLine(row) {
+          var insideQuote = false,
+            entries = [],
+            entry = [];
+          row.split("").forEach(function (character) {
+            if (character === '"') {
+              insideQuote = !insideQuote;
+            } else {
+              if (character == "," && !insideQuote) {
+                entries.push(entry.join(""));
+                entry = [];
+              } else {
+                entry.push(character);
+              }
+            }
+          });
+          entries.push(entry.join(""));
+          return entries;
+        }
+
+        for (let i = 1; i < lines.length; i++) {
+          let dataLines = lines.slice(i);
+          let data = dataLines.map(parseCsvLine)[0];
+          const obj = {};
+
+          for (let j = 0; j < headers.length; j++) {
+            obj[headers[j]] = data[j];
+          }
+
+          result.push(obj);
+        }
+
+        return result;
+      }
+
+      // fetch data from online URL
+      function fetchCsv(endPoint) {
+        fetch(endPoint)
+          .then((response) => response.text())
+          .then((csvData) => {
+            data = parseCsvIntoJson(csvData);
+            isLoading = false;
+            loadData(data);
+          })
+          .catch((error) => {
+            console.error("Error loading CSV file:", error);
+          });
+      }
+
+      window.addEventListener("load", function () {
+        // load data
+        fetchCsv(CSV_URL);
+
+        // call necessary functions
+        setLeftValue();
+        setRightValue();
+
+        // range events
+        inputLeft.addEventListener("input", setLeftValue);
+        inputRight.addEventListener("input", setRightValue);
+
+        // search events
+        inputLocation.addEventListener("input", doSearch);
+        inputWorkspaces.addEventListener("input", doSearch);
+
+        // transitions
+        inputLeft.addEventListener("mouseover", function () {
+          thumbLeft.classList.add("hover");
+        });
+        inputLeft.addEventListener("mouseout", function () {
+          thumbLeft.classList.remove("hover");
+        });
+        inputLeft.addEventListener("mousedown", function () {
+          thumbLeft.classList.add("active");
+        });
+        inputLeft.addEventListener("mouseup", function () {
+          thumbLeft.classList.remove("active");
+        });
+        inputRight.addEventListener("mouseover", function () {
+          thumbRight.classList.add("hover");
+        });
+        inputRight.addEventListener("mouseout", function () {
+          thumbRight.classList.remove("hover");
+        });
+        inputRight.addEventListener("mousedown", function () {
+          thumbRight.classList.add("active");
+        });
+        inputRight.addEventListener("mouseup", function () {
+          thumbRight.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
