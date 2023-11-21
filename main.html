@@ -82,11 +82,11 @@
     <table>
       <thead>
         <tr>
-          <th onclick="sortTable('City')">City</th>
-          <th>Location</th>
-          <th>Address</th>
-          <th>WorkSpaces</th>
-          <th>List Price</th>
+          <th id="cityHeader">City</th>
+          <th id="locationHeader">Location</th>
+          <th id="addressHeader">Address</th>
+          <th id="workspaceHeader">WorkSpaces</th>
+          <th id="lastpriceHeader">List Price</th>
           <th>Avilable From</th>
           <th>Name</th>
         </tr>
@@ -126,6 +126,87 @@
 
     const priceRangeValMin = document.getElementById("price_range_val-min");
     const priceRangeValMax = document.getElementById("price_range_val-max");
+
+
+    let sortOrders = {};
+
+function sortTable(column) {
+  console.log(`Sorting table by ${column}`);
+  
+  // Initialize sort order if not already set
+  if (!sortOrders[column]) {
+    sortOrders[column] = 'asc';
+  } else {
+    // Toggle between 'asc' and 'desc'
+    sortOrders[column] = sortOrders[column] === 'asc' ? 'desc' : 'asc';
+  }
+
+  data.sort((a, b) => {
+    let valueA, valueB;
+
+    if (column === 'WorkSpaces' || column === 'List Price') {
+      valueA = parseFloat(a[column]) || 0;
+      valueB = parseFloat(b[column]) || 0;
+    } else {
+      valueA = (a[column] || '').toUpperCase();
+      valueB = (b[column] || '').toUpperCase();
+    }
+
+    let comparison = 0;
+    if (valueA < valueB) {
+      comparison = -1;
+    } else if (valueA > valueB) {
+      comparison = 1;
+    }
+
+    return sortOrders[column] === 'asc' ? comparison : -comparison;
+  });
+
+  loadData(data);
+}
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const cityHeader = document.getElementById("cityHeader");
+      const locationHeader = document.getElementById("locationHeader");
+    
+      if (cityHeader) {
+        cityHeader.addEventListener("click", function () {
+          console.log("City column header clicked");
+          sortTable('City');
+        });
+      }
+    
+      if (locationHeader) {
+        locationHeader.addEventListener("click", function () {
+          console.log("Location column header clicked");
+          sortTable('Location');
+        });
+      }
+
+      if(addressHeader) {
+        addressHeader.addEventListener("click", function () {
+          console.log("Address column header clicked");
+          sortTable('Address');
+        });
+      }
+
+      if(workspaceHeader) {
+        workspaceHeader.addEventListener("click", function () {
+          console.log("Workspaces column header clicked");
+          sortTable('WorkSpaces');
+        });
+      }
+
+      if(lastpriceHeader) {
+        lastpriceHeader.addEventListener("click", function () {
+          console.log("List Price column header clicked");
+          sortTable('List Price');
+        });
+      }
+    });
+
 
     // for slider functionality
     function setLeftValue() {
