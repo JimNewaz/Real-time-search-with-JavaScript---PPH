@@ -243,12 +243,14 @@ input[type="range"]::-webkit-slider-thumb {
 .table_container thead th {
     position: sticky;
     /* make the table heads sticky */
-    top: 0px;
+    top: -15px;
     /* table head will be placed from the top of the table and sticks to it */
-    padding: 16px 16px 8px;
-    background-color: #ffffff;
+    padding: 16px 16px 16px;
+    /* background-color: #ffffff; */
     border-bottom: 1px solid #ccc;
 }
+
+
 
 .table_container tbody td {
     padding: 8px 16px;
@@ -292,4 +294,8 @@ input[type="range"]::-webkit-slider-thumb {
         -ms-grid-column-span: 2;
         grid-column: span 2 / span 2;
     }
+}
+
+.custom-height{
+    min-height: 220px;
 }
