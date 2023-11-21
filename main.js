@@ -25,8 +25,6 @@
     leftSlider.addEventListener('input', updateStepValues);
     rightSlider.addEventListener('input', updateStepValues);
 
-
-
     // elements
     const inputLocation = document.getElementById("location-search");
     const inputWorkspaces = document.getElementById("workspaces-search");
