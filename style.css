@@ -232,7 +232,7 @@ input[type="range"]::-webkit-slider-thumb {
 .table_container {
     position: relative;
     margin: 2.2rem auto 0;
-    max-height: 992px;
+    max-height: 550px;
     max-width: 1440px;
     width: 100%;
     overflow: auto;
