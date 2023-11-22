@@ -24,20 +24,83 @@
   <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
   <title>Updated Version</title>
 </head>
 
 
 <body>
 
-  <header class="flex justify-center">
-    <div>
-      <h1 class="page_title">Availability Consolidation</h1>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title">
+            <h1 class="page_title text-center mt-5 mb-5">Availability Consolidation</h1>
+          </div>          
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="location-search" class="form-label mt-4 f-16"> Where are you looking? </label>
+
+              <div class="input-group mb-3">                
+                <input class="form-control" id="location-search" type="text" placeholder="Start typing a location" value="">
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>              
+              
+            </div>
+            <div class="col-md-6">
+              <div class="form-outline">
+                <label for="workspaces-search" class="form-label mt-4 f-16">For roughly how many people?</label>
+                <input type="number"  id="workspaces-search" class="form-control" type="number" min="0" value="0" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="filter_container-right">
+            <div class="flex justify-center">
+              <h4 class="price_range-title">Price Range</h4>
+            </div>
+            <div class="filter-range_value text-center">
+              <span id="price_range_val-min"> </span>
+              <span> - </span>
+              <span id="price_range_val-max"> </span>
+            </div>
+
+            <div class="multi-range-slider">
+              <input type="range" id="input-left" min="200" max="105350" value="0" step="5000" />
+              <input type="range" id="input-right" min="200" max="105350" value="300000" step="25000" />
+
+              <div class="slider">
+                <div class="track"></div>
+                <div class="range"></div>
+                <div class="thumb left"></div>
+                <div class="thumb right"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </header>
 
-
-  <div class="container mt-4 ">
+  <!-- <div class="container mt-4 ">
     <div class="row">
       <div class="col-sm-6 mb-1">
         <div class="card custom-height">
@@ -86,7 +149,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
 
 
 

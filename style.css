@@ -6,7 +6,6 @@
 }
 
 body {
-    padding: 24px 0;
     font-size: 16px;
 }
 
@@ -42,28 +41,28 @@ body {
 
 /* ------- */
 
-header div {
-    padding: 0.8rem 0.7rem;
-    border: 1px solid rgb(150, 187, 228);
-    background: rgb(150, 187, 228);
-    background: -webkit-gradient(linear,
-            left top,
-            right top,
-            color-stop(46%, rgba(150, 187, 228, 1)),
-            color-stop(98%, rgba(175, 201, 232, 1)));
-    background: -o-linear-gradient(left,
-            rgba(150, 187, 228, 1) 46%,
-            rgba(175, 201, 232, 1) 98%);
-    background: linear-gradient(90deg,
-            rgba(150, 187, 228, 1) 46%,
-            rgba(175, 201, 232, 1) 98%);
-    border-radius: 0.5rem;
+header{
+    background-image: url("img/header-background.png");
+    background-size: cover;
+    background-position: top; 
+    background-repeat: no-repeat; 
+}
+
+@media (max-width: 767px) {
+    /* Adjust background properties for screens up to 767px wide (typically mobile devices) */
+    header {
+        background-size: contain; /* Keeps the entire image visible, might result in some empty space */
+    }
+    .title{
+        margin-top: 50px;
+        font-family: cursive;
+    }
 }
 
 .page_title {
     font-size: 1rem;
     color: #000000;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: capitalize;
 }
 
@@ -129,7 +128,7 @@ main {
 
 /* slider */
 .multi-range-slider {
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     position: relative;
 }
 
@@ -263,13 +262,9 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* responsiveness */
 @media screen and (min-width: 720px) {
-    header div {
-        padding: 1.1rem 5.7rem;
-        border-radius: 0.6rem;
-    }
-
     .page_title {
-        font-size: 1.25rem;
+        font-size: 2rem;
+        font-weight: 700;
     }
 }
 
@@ -302,4 +297,40 @@ input[type="range"]::-webkit-slider-thumb {
 
 .left{
     margin-left: 15px;
+}
+
+.title{
+    margin-top: 150px;
+    font-family: cursive;
+}
+
+
+.f-16{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.input-group-text{
+    padding: 0.5rem !important;
+    background-color: white !important;
+    border: 1px solid white !important;
+    border-radius: 5px !important;
+    margin-top: 1px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+    opacity: 1;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    z-index: 2;
 }
