@@ -122,14 +122,17 @@ main {
 }
 
 .filter-range_value {
-    margin-top: 1.6rem;
-    font-size: 1.12rem;
+    /* margin-top: 20px; */
+    margin-bottom: 15px;
+    font-size: 14px;
 }
 
 /* slider */
 .multi-range-slider {
     /* margin-top: 2rem; */
     position: relative;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .slider {
@@ -158,7 +161,9 @@ main {
     top: 0;
     bottom: 0;
     border-radius: 4px;
-    background-color: rgb(0, 108, 227);
+    /* background-color: rgb(0, 108, 227); */
+    background: linear-gradient(to right, #5E60C5, #3C82C8, #00B2CD, #00B4CC);
+
 }
 
 .slider>.thumb {
@@ -166,7 +171,8 @@ main {
     z-index: 3;
     width: 24px;
     height: 24px;
-    background-color: rgb(0, 108, 227);
+    /* background-color: rgb(0, 108, 227); */
+    background: linear-gradient(to right, #5E60C5, #3C82C8, #00B2CD, #00B4CC);
     border-radius: 50%;
     -webkit-box-shadow: 0 0 0 0 rgba(0, 108, 227, 0.1);
     box-shadow: 0 0 0 0 rgba(0, 108, 227, 0.1);
@@ -176,6 +182,7 @@ main {
     transition: box-shadow 0.3s ease-in-out;
     transition: box-shadow 0.3s ease-in-out,
         -webkit-box-shadow 0.3s ease-in-out;
+    /* cursor: pointer; */
 }
 
 .slider>.thumb.left {
@@ -333,4 +340,8 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     right: 0;
     z-index: 2;
+}
+
+.price{
+    font-family: cursive;
 }
