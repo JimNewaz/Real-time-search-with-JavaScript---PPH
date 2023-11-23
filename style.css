@@ -41,19 +41,22 @@ body {
 
 /* ------- */
 
-header{
+header {
     background-image: url("img/header-background.png");
     background-size: cover;
-    background-position: top; 
-    background-repeat: no-repeat; 
+    background-position: top;
+    background-repeat: no-repeat;
 }
 
 @media (max-width: 767px) {
+
     /* Adjust background properties for screens up to 767px wide (typically mobile devices) */
     header {
-        background-size: contain; /* Keeps the entire image visible, might result in some empty space */
+        background-size: contain;
+        /* Keeps the entire image visible, might result in some empty space */
     }
-    .title{
+
+    .title {
         margin-top: 50px;
         font-family: cursive;
     }
@@ -251,7 +254,7 @@ input[type="range"]::-webkit-slider-thumb {
     /* make the table heads sticky */
     top: -15px;
     /* table head will be placed from the top of the table and sticks to it */
-    padding: 16px 16px 16px;
+    padding: 10px;
     /* background-color: #ffffff; */
     border-bottom: 1px solid #ccc;
 }
@@ -298,26 +301,26 @@ input[type="range"]::-webkit-slider-thumb {
     }
 }
 
-.custom-height{
+.custom-height {
     min-height: 220px;
 }
 
-.left{
+.left {
     margin-left: 15px;
 }
 
-.title{
+.title {
     margin-top: 150px;
     font-family: cursive;
 }
 
 
-.f-16{
+.f-16 {
     font-size: 16px;
     font-weight: 600;
 }
 
-.input-group-text{
+.input-group-text {
     padding: 0.5rem !important;
     background-color: white !important;
     border: 1px solid white !important;
@@ -325,8 +328,8 @@ input[type="range"]::-webkit-slider-thumb {
     margin-top: 1px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
 }
 
@@ -342,12 +345,13 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 2;
 }
 
-.price{
+.price {
     font-family: cursive;
 }
 
-.table>thead{
+.table>thead {
     vertical-align: middle !important;
+    cursor: pointer;
 }
 
 .step-divider {
@@ -357,3 +361,26 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: white;
     z-index: 2;
 }
+
+.arrow {
+    display: block;
+    margin-right: 4px;
+    color: white;
+    font-size: 8px;
+}
+
+.asc #cityUpArrow, .asc #locationUpArrow, .asc #priceUpArrow, .asc #addressUpArrow, .asc #workspaceUpArrow, .asc #listpriceUpArrow {
+    color: #59CBED;
+}
+
+.desc #cityDownArrow, .desc #locationDownArrow, .desc #priceDownArrow, .desc #addressDownArrow, .desc #workspaceDownArrow, .desc #listpriceDownArrow {
+    color: #59CBED;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+

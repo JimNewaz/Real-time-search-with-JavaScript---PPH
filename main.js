@@ -32,7 +32,7 @@
     function updateStepDividers() {
         const slider = document.querySelector('.slider');
         const stepDividers = document.querySelectorAll('.step-divider');
-        
+
         // Remove existing step dividers
         stepDividers.forEach(divider => divider.remove());
 
@@ -76,6 +76,41 @@
             // Toggle between 'asc' and 'desc'
             sortOrders[column] = sortOrders[column] === 'asc' ? 'desc' : 'asc';
         }
+
+        // Reset arrow icons and colors
+        const headers = document.querySelectorAll('th');
+        headers.forEach((header) => {
+            header.classList.remove('asc', 'desc');
+            header.style.color = 'white';
+        });
+
+        // Set arrow icon and color for the clicked header
+        if(column === 'WorkSpaces' || column === 'List Price') {
+            const clickedHeader = document.getElementById(`${column.toLowerCase()}Header`);
+            const upArrow = document.getElementById('workspaceUpArrow');
+            const downArrow = document.getElementById('workspaceDownArrow');
+
+            const listpriceupArrow = document.getElementById('listpriceUpArrow');
+            const listpricedownArrow = document.getElementById('listpriceDownArrow');
+
+            if (column === 'WorkSpaces' && sortOrders[column] === 'asc') {
+                upArrow.style.color = '#59CBED'; 
+                downArrow.style.color = 'white';
+            } else if ( column === 'WorkSpaces' && sortOrders[column] === 'desc') {
+                downArrow.style.color = '#59CBED'; 
+                upArrow.style.color = 'white';
+            } else if( column === 'List Price' && sortOrders[column] === 'asc'){
+                listpricedownArrow.style.color = '#59CBED'; 
+                listpriceupArrow.style.color = 'white';
+            } else if(column === 'List Price' && sortOrders[column] === 'desc'){
+                listpriceupArrow.style.color = '#59CBED'; 
+                listpricedownArrow.style.color = 'white';
+            }
+        }else{
+            const clickedHeader = document.getElementById(`${column.toLowerCase()}Header`);
+            clickedHeader.classList.add(sortOrders[column]);
+        }
+        
 
         data.sort((a, b) => {
             let valueA, valueB;
@@ -259,14 +294,14 @@
             filteredData.forEach((dt) => {
                 const tableRow = document.createElement("tr");
                 const cells = Object.values(dt);
-                
+
                 for (let i = 0; i < 7; i++) {
                     const tableCell = document.createElement("td");
-                    
+
                     if (i < cells.length) {
                         tableCell.textContent = cells[i];
                     } else {
-                        tableCell.textContent = ""; 
+                        tableCell.textContent = "";
                     }
                     tableRow.appendChild(tableCell);
                 }
