@@ -131,8 +131,8 @@ main {
 .multi-range-slider {
     /* margin-top: 2rem; */
     position: relative;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .slider {
@@ -344,4 +344,16 @@ input[type=number]::-webkit-outer-spin-button {
 
 .price{
     font-family: cursive;
+}
+
+.table>thead{
+    vertical-align: middle !important;
+}
+
+.step-divider {
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background-color: white;
+    z-index: 2;
 }

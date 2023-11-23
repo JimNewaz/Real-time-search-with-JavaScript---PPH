@@ -20,10 +20,35 @@
         } else {
             rightSlider.step = 5000;
         }
+
+        updateStepDividers();
     }
 
     leftSlider.addEventListener('input', updateStepValues);
     rightSlider.addEventListener('input', updateStepValues);
+
+
+    // Function to update the step dividers
+    function updateStepDividers() {
+        const slider = document.querySelector('.slider');
+        const stepDividers = document.querySelectorAll('.step-divider');
+        
+        // Remove existing step dividers
+        stepDividers.forEach(divider => divider.remove());
+
+        // Add new step dividers
+        const stepCount = (rightSlider.max - leftSlider.min) / leftSlider.step;
+        for (let i = 1; i < stepCount; i++) {
+            const stepDivider = document.createElement('div');
+            stepDivider.className = 'step-divider';
+            const leftPosition = (i / stepCount) * 100;
+            stepDivider.style.left = leftPosition + '%';
+            slider.appendChild(stepDivider);
+        }
+    }
+
+    // Initial update of step dividers
+    updateStepDividers();
 
     // elements
     const inputLocation = document.getElementById("location-search");
