@@ -276,14 +276,19 @@
     }
 
     // load the data into the DOM
-    function loadData(filteredData) {
+    function loadData(filteredData, pageNumber = 1, pageSize = 30) {
         if (isLoading) return;
-
+    
         const tableBody = document.getElementById("tbody");
         const newTableBody = document.createElement("tbody");
         newTableBody.setAttribute("id", "tbody");
-
-        if (filteredData.length === 0) {
+    
+        const startIndex = (pageNumber - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+    
+        const currentPageData = filteredData.slice(startIndex, endIndex);
+    
+        if (currentPageData.length === 0) {
             const tableRow = document.createElement("tr");
             const tableCell = document.createElement("td");
             tableCell.setAttribute("colspan", 7); // Update colspan to 7
@@ -291,13 +296,13 @@
             tableRow.appendChild(tableCell);
             newTableBody.appendChild(tableRow);
         } else {
-            filteredData.forEach((dt) => {
+            currentPageData.forEach((dt) => {
                 const tableRow = document.createElement("tr");
                 const cells = Object.values(dt);
-
+    
                 for (let i = 0; i < 7; i++) {
                     const tableCell = document.createElement("td");
-
+    
                     if (i < cells.length) {
                         tableCell.textContent = cells[i];
                     } else {
@@ -305,13 +310,17 @@
                     }
                     tableRow.appendChild(tableCell);
                 }
-
+    
                 newTableBody.appendChild(tableRow);
             });
         }
-
+    
         tableBody.parentNode.replaceChild(newTableBody, tableBody);
     }
+    
+    // Example usage:
+    // Load the first page with 10 rows
+    loadData(data, 1, 30);
 
     // CSV parser
     function parseCsvIntoJson(csv) {
@@ -352,6 +361,29 @@
         }
 
         return result;
+    }
+
+    let currentPage = 1; let pageSize = 30;
+
+    function loadPreviousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            loadData(data, currentPage, pageSize);
+            updateCurrentPage();
+        }
+    }
+
+    function loadNextPage() {
+        const totalPages = Math.ceil(data.length / pageSize);
+        if (currentPage < totalPages) {
+            currentPage++;
+            loadData(data, currentPage, pageSize);
+            updateCurrentPage();
+        }
+    }
+
+    function updateCurrentPage() {
+        document.getElementById("currentPage").textContent = currentPage;
     }
 
     // fetch data from online URL

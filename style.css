@@ -243,7 +243,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 .table_container table {
     margin: 0 auto;
-    min-width: 440px;
+    min-width: 800px;
     max-width: 1440px;
     width: 100%;
     border-collapse: collapse;
@@ -254,7 +254,7 @@ input[type="range"]::-webkit-slider-thumb {
     /* make the table heads sticky */
     top: -15px;
     /* table head will be placed from the top of the table and sticks to it */
-    padding: 10px;
+    padding: 12px;
     /* background-color: #ffffff; */
     border-bottom: 1px solid #ccc;
 }
@@ -350,7 +350,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .table>thead {
-    vertical-align: middle !important;
+    vertical-align: bottom;
     cursor: pointer;
 }
 
@@ -384,3 +384,18 @@ input[type=number]::-webkit-outer-spin-button {
     flex-direction: column;
 }
 
+.btn-custom{
+    background: linear-gradient(to right,  #3C82C8, #00B2CD, #00B4CC);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.btn-custom:hover{
+    background: linear-gradient(to right, #316ca6, #0090a6, #008698);
+    color: white;
+}

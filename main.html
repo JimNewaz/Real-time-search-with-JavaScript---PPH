@@ -38,7 +38,7 @@
         <div class="col-md-12">
           <div class="title">
             <h1 class="page_title text-center mt-5 mb-5">Availability Consolidation</h1>
-          </div>          
+          </div>
         </div>
       </div>
     </div>
@@ -50,22 +50,25 @@
             <div class="col-md-6">
               <label for="location-search" class="form-label mt-4 f-16"> Where are you looking? </label>
 
-              <div class="input-group mb-3">                
-                <input class="form-control" id="location-search" type="text" placeholder="Start typing a location" value="">
+              <div class="input-group mb-3">
+                <input class="form-control" id="location-search" type="text" placeholder="Start typing a location"
+                  value="">
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-search" viewBox="0 0 16 16">
+                      <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                     </svg>
                   </span>
                 </div>
-              </div>              
-              
+              </div>
+
             </div>
             <div class="col-md-6">
               <div class="form-outline">
                 <label for="workspaces-search" class="form-label mt-4 f-16">For roughly how many people?</label>
-                <input type="number"  id="workspaces-search" class="form-control" type="number" min="0" value="0" />
+                <input type="number" id="workspaces-search" class="form-control" type="number" min="0" value="0" />
               </div>
             </div>
           </div>
@@ -90,7 +93,7 @@
                 <div class="track"></div>
                 <div class="range"></div>
                 <div class="thumb left"></div>
-                <div class="thumb right"></div>                
+                <div class="thumb right"></div>
               </div>
             </div>
           </div>
@@ -100,93 +103,38 @@
     </div>
   </header>
 
-  <!-- <div class="container mt-4 ">
-    <div class="row">
-      <div class="col-sm-6 mb-1">
-        <div class="card custom-height">
-          <div class="card-body p-4">
-            <div class="space-y-8">
-              <div class="field_container">
-                <label for="location-search"> WHERE ARE YOU LOOKING? </label>
-                <input id="location-search" type="text" placeholder="Start typing a location" value="" />
-              </div>
-              <div class="field_container">
-                <label for="workspaces-search">
-                  FOR ROUGHLY HOW MANY PEOPLE?
-                </label>
-                <input id="workspaces-search" type="number" min="0" value="0" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 mb-1">
-        <div class="card custom-height">
-          <div class="card-body p-4">
-            <div class="filter_container-right">
-              <div class="flex justify-center">
-                <h4 class="price_range-title">Price Range</h4>
-              </div>
-              <div class="filter-range_value text-center">
-                <span id="price_range_val-min"> </span>
-                <span> - </span>
-                <span id="price_range_val-max">  </span>
-              </div>
-
-              <div class="multi-range-slider">
-                <input type="range" id="input-left" min="200" max="105350" value="0" step="5000" />
-                <input type="range" id="input-right" min="200" max="105350" value="300000" step="25000" />
-
-                <div class="slider">
-                  <div class="track"></div>
-                  <div class="range"></div>
-                  <div class="thumb left"></div>
-                  <div class="thumb right"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-
-
-
   <!-- Table Start -->
   <div class="bg-light">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="table_container mb-5">
+          <div class="table_container mb-2">
             <table class="table table-hover table-bordered table-light table-responsive" id="customtable">
               <thead>
                 <tr class="text-center table-dark">
                   <th id="cityHeader">
                     <div class="row">
-                      <div class="col-9 col-sm-9">
+                      <div class="col-9 col-sm-9 g-0">
                         <span class="header-text">City</span>
                       </div>
-                      <div class="col-3 col-sm-3">
+                      <div class="col-3 col-sm-3 g-0">
                         <div class="header-content">
                           <span id="cityUpArrow" class="arrow">&#9650;</span>
-                          <span id="cityDownArrow" class="arrow">&#9660;</span>                          
+                          <span id="cityDownArrow" class="arrow">&#9660;</span>
                         </div>
                       </div>
-                    </div>                  
+                    </div>
                   </th>
 
-                  <th id="locationHeader">                    
+                  <th id="locationHeader">
                     <div class="row">
-                      <div class="col-9 col-sm-9">
+                      <div class="col-9 col-sm-9 g-0">
                         <span class="header-text">Location</span>
                       </div>
-                      <div class="col-3 col-sm-3">
+                      <div class="col-3 col-sm-3 g-0">
                         <div class="header-content">
                           <span id="locationUpArrow" class="arrow">&#9650;</span>
-                          <span id="locationDownArrow" class="arrow">&#9660;</span>                          
+                          <span id="locationDownArrow" class="arrow">&#9660;</span>
                         </div>
                       </div>
                     </div>
@@ -194,43 +142,42 @@
 
                   <th id="addressHeader">
                     <div class="row">
-                      <div class="col-9 col-sm-9">
+                      <div class="col-9 col-sm-9 g-0">
                         <span class="header-text">Address</span>
                       </div>
-                      <div class="col-3 col-sm-3">
+                      <div class="col-3 col-sm-3 g-0">
                         <div class="header-content">
                           <span id="addressUpArrow" class="arrow">&#9650;</span>
-                          <span id="addressDownArrow" class="arrow">&#9660;</span>                          
+                          <span id="addressDownArrow" class="arrow">&#9660;</span>
                         </div>
                       </div>
                     </div>
                   </th>
                   <th id="workspaceHeader">
                     <div class="row">
-                      <div class="col-9 col-sm-9">
+                      <div class="col-9 col-sm-9 g-0">
                         <span class="header-text">WorkSpaces</span>
                       </div>
-                      <div class="col-3 col-sm-3">
+                      <div class="col-3 col-sm-3 g-0">
                         <div class="header-content">
                           <span id="workspaceUpArrow" class="arrow">&#9650;</span>
-                          <span id="workspaceDownArrow" class="arrow">&#9660;</span>                          
+                          <span id="workspaceDownArrow" class="arrow">&#9660;</span>
                         </div>
                       </div>
                     </div>
                   </th>
                   <th id="lastpriceHeader" style="width:10%">
                     <div class="row">
-                      <div class="col-9 col-sm-9">
+                      <div class="col-9 col-sm-9 g-0">
                         <span class="header-text">List Price</span>
                       </div>
-                      <div class="col-3 col-sm-3">
+                      <div class="col-3 col-sm-3 g-0">
                         <div class="header-content">
                           <span id="listpriceUpArrow" class="arrow">&#9650;</span>
-                          <span id="listpriceDownArrow" class="arrow">&#9660;</span>                          
+                          <span id="listpriceDownArrow" class="arrow">&#9660;</span>
                         </div>
                       </div>
-                    </div>                    
-                  </div>
+                    </div>
                   </th>
                   <th>Avilable From</th>
                   <th>Name</th>
@@ -242,6 +189,12 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div class="mb-5 float-end mt-2">
+            <button onclick="loadPreviousPage()" class="btn-sm btn-custom me-2">Previous</button>
+            <span id="currentPage" >1</span>
+            <button onclick="loadNextPage()" class="btn-sm btn-custom ms-2">Next</button>
           </div>
         </div>
       </div>
