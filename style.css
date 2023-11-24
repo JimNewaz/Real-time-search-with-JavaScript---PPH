@@ -5,6 +5,19 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
 body {
     font-size: 16px;
 }
@@ -254,7 +267,7 @@ input[type="range"]::-webkit-slider-thumb {
     /* make the table heads sticky */
     top: -15px;
     /* table head will be placed from the top of the table and sticks to it */
-    padding: 12px;
+    padding: 14px;
     /* background-color: #ffffff; */
     border-bottom: 1px solid #ccc;
 }
@@ -398,4 +411,11 @@ input[type=number]::-webkit-outer-spin-button {
 .btn-custom:hover{
     background: linear-gradient(to right, #316ca6, #0090a6, #008698);
     color: white;
+}
+
+.current-page{
+    padding: 0.25rem 0.5rem;
+    font-size: .875rem;
+    border-radius: 0.2rem;
+    box-shadow: 0px 7px 25px -6px rgb(0 0 0 / 52%);
 }

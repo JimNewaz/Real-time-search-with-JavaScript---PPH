@@ -2,7 +2,6 @@
     let data = [],
         isLoading = true;
 
-
     const leftSlider = document.getElementById('input-left');
     const rightSlider = document.getElementById('input-right');
 
@@ -201,21 +200,34 @@
     function setRightValue() {
         var _this = inputRight,
             min = parseInt(_this.min),
-            max = parseInt(_this.max);
-
+            max = parseInt(_this.max),
+            step = parseInt(_this.step);
+    
+        // Ensure that the step is always consistent with the current slider value
+        _this.step = step;
+    
         _this.value = Math.max(
             parseInt(_this.value),
-            parseInt(inputLeft.value) + 5
+            parseInt(inputLeft.value) + step
         );
-
+    
         var percent = ((_this.value - min) / (max - min)) * 100;
-
+    
         thumbRight.style.right = 100 - percent + "%";
         range.style.right = 100 - percent + "%";
+        console.log(_this.value);
 
-        priceRangeValMax.innerHTML = "£" + _this.value;
+        var diff = max - _this.value;
+        var value = parseInt(_this.value);
+
+        if (diff < 50000) {
+            // add 50000 to the value             
+            value = value + 50000;
+        }
+
+        priceRangeValMax.innerHTML = "£" + value;
         doSearch();
-    }
+    }    
 
     // helper functions for the search
     function searchByLocation(dt, query) {
@@ -442,3 +454,6 @@
             thumbRight.classList.remove("active");
         });
     });
+
+
+    
