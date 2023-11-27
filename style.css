@@ -147,8 +147,8 @@ main {
 .multi-range-slider {
     /* margin-top: 2rem; */
     position: relative;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .slider {
@@ -162,7 +162,7 @@ main {
     position: absolute;
     z-index: 1;
     left: 0;
-    right: 15px;
+    right: 30px;
     top: 0;
     bottom: 0;
     border-radius: 4px;

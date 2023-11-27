@@ -218,12 +218,8 @@
         console.log(_this.value);
 
         var diff = max - _this.value;
-        var value = parseInt(_this.value);
-
-        if (diff < 50000) {
-            // add 50000 to the value             
-            value = value + 50000;
-        }
+        var value = parseInt(_this.value);  
+        value = value + 24800;
 
         priceRangeValMax.innerHTML = "£" + value;
         doSearch();
@@ -376,6 +372,7 @@
     }
 
     let currentPage = 1; let pageSize = 30;
+    // updateTotalPages();
 
     function loadPreviousPage() {
         if (currentPage > 1) {
@@ -394,8 +391,15 @@
         }
     }
 
-    function updateCurrentPage() {
+    function updateCurrentPage() {      
+        const totalPages = Math.ceil(data.length / pageSize);
         document.getElementById("currentPage").textContent = currentPage;
+        document.getElementById("totalPages").textContent = totalPages;
+    }
+
+    function updateTotalPages() {
+        const totalPages = Math.ceil(data.length / pageSize);
+        document.getElementById("totalPages").textContent = totalPages;
     }
 
     // fetch data from online URL
@@ -406,10 +410,14 @@
                 data = parseCsvIntoJson(csvData);
                 isLoading = false;
                 loadData(data);
+
+                updateTotalPages();
             })
             .catch((error) => {
                 console.error("Error loading CSV file:", error);
             });
+
+            
     }
 
     window.addEventListener("load", function () {
