@@ -1,7 +1,8 @@
     const CSV_URL = "latest.csv";
-    let data = [],
+    let data = [], 
         isLoading = true;
 
+    let filteredData = [];
     const leftSlider = document.getElementById('input-left');
     const rightSlider = document.getElementById('input-right');
 
@@ -269,7 +270,7 @@
         let priceRangeMin = inputLeft.value;
         let priceRangeMax = inputRight.value;
 
-        let tempt = data.filter((dt) => {
+        filteredData = data.filter((dt) => {
             if (
                 searchByLocation(dt, location) &&
                 searchByWorkspaces(dt, workSpaces) &&
@@ -280,7 +281,24 @@
                 return false;
             }
         });
-        loadData(tempt);
+
+        // let tempt = data.filter((dt) => {
+        //     if (
+        //         searchByLocation(dt, location) &&
+        //         searchByWorkspaces(dt, workSpaces) &&
+        //         searchByPriceRange(dt, priceRangeMin, priceRangeMax)
+        //     ) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // });
+        // loadData(tempt);
+        
+        updateTotalPages2(filteredData);
+
+        // Load the first page of the filtered data
+        loadData(filteredData, 1, pageSize);
     }
 
     // load the data into the DOM
@@ -372,23 +390,42 @@
     }
 
     let currentPage = 1; let pageSize = 30;
-    // updateTotalPages();
 
     function loadPreviousPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            loadData(data, currentPage, pageSize);
-            updateCurrentPage();
+
+        if(filteredData.length > 0){
+            if (currentPage > 1) {                
+                currentPage--;
+                loadData(filteredData, currentPage, pageSize);
+                updateCurrentPage();
+                updateTotalPages2(filteredData);
+            }
+        }else{
+            if (currentPage > 1) {
+                currentPage--;
+                loadData(data, currentPage, pageSize);
+                updateCurrentPage();
+            }
         }
     }
 
     function loadNextPage() {
-        const totalPages = Math.ceil(data.length / pageSize);
-        if (currentPage < totalPages) {
-            currentPage++;
-            loadData(data, currentPage, pageSize);
-            updateCurrentPage();
-        }
+
+        if(filteredData.length > 0){
+            const totalPages = Math.ceil(filteredData.length / pageSize);
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData(filteredData, currentPage, pageSize);
+                updateCurrentPage2(filteredData);
+            }
+        }else{
+            const totalPages = Math.ceil(data.length / pageSize);
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData(data, currentPage, pageSize);
+                updateCurrentPage();    
+            }
+        }       
     }
 
     function updateCurrentPage() {      
@@ -397,8 +434,19 @@
         document.getElementById("totalPages").textContent = totalPages;
     }
 
+    function updateCurrentPage2(){
+        const totalPages = Math.ceil(filteredData.length / pageSize);
+        document.getElementById("currentPage").textContent = currentPage;
+        document.getElementById("totalPages").textContent = totalPages;
+    }
+
     function updateTotalPages() {
         const totalPages = Math.ceil(data.length / pageSize);
+        document.getElementById("totalPages").textContent = totalPages;
+    }
+
+    function updateTotalPages2(filteredData) {
+        const totalPages = Math.ceil(filteredData.length / pageSize);
         document.getElementById("totalPages").textContent = totalPages;
     }
 
@@ -410,14 +458,11 @@
                 data = parseCsvIntoJson(csvData);
                 isLoading = false;
                 loadData(data);
-
                 updateTotalPages();
             })
             .catch((error) => {
                 console.error("Error loading CSV file:", error);
-            });
-
-            
+            });            
     }
 
     window.addEventListener("load", function () {
